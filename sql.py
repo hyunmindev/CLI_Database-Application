@@ -1,7 +1,7 @@
 import pymysql
 
-university = pymysql.connect(host="localhost", user="root", password="4646", db="university")
-cursor = university.cursor(pymysql.cursors.DictCursor)
+connect = pymysql.connect(host="localhost", user="root", password="4646", db="university")
+cursor = connect.cursor(pymysql.cursors.DictCursor)
 
 
 def insert_student(sno, sname, syear, dept):
@@ -18,7 +18,7 @@ def insert_student(sno, sname, syear, dept):
     """
     sql = "insert into STUDENT values (%s, %s, %s, %s)"
     cursor.execute(sql, (sno, sname, syear, dept))
-    university.commit()
+    connect.commit()
 
 
 def delete_student(sno):
@@ -32,7 +32,7 @@ def delete_student(sno):
     """
     sql = "delete from STUDENT where %s = STUDENT.sno"
     cursor.execute(sql, sno)
-    university.commit()
+    connect.commit()
 
 
 def select_student(sno=""):
@@ -71,7 +71,7 @@ def insert_course(cno, cnmae, credit, dept, prname):
     """
     sql = "insert into COURSE values (%s, %s, %s, %s, %s)"
     cursor.execute(sql, (cno, cnmae, credit, dept, prname))
-    university.commit()
+    connect.commit()
 
 
 def delete_course(cno):
@@ -85,7 +85,7 @@ def delete_course(cno):
     """
     sql = "delete from COURSE where %s = COURSE.cno"
     cursor.execute(sql, cno)
-    university.commit()
+    connect.commit()
 
 
 def select_course(cno=""):
@@ -124,7 +124,7 @@ def insert_enrol(sno, cno, grade, midterm, final):
     """
     sql = "insert into ENROL values (%s, %s, %s, %s, %s)"
     cursor.execute(sql, (sno, cno, grade, midterm, final))
-    university.commit()
+    connect.commit()
 
 
 def delete_enrol(sno, cno):
@@ -139,7 +139,7 @@ def delete_enrol(sno, cno):
     """
     sql = "delete from ENROL where %s = ENROL.sno and %s = ENROL.cno"
     cursor.execute(sql, (sno, cno))
-    university.commit()
+    connect.commit()
 
 
 def select_enrol(sno="", cno=""):
